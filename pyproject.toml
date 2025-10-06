@@ -18,3 +18,7 @@ license-files = ["LICEN[CS]E*"]
 [project.urls]
 Homepage = "https://github.com/F18-Maverick/EasyTicket"
 Issues = "https://github.com/F18-Maverick/EasyTicket/issues"
+
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
