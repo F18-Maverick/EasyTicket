@@ -1,4 +1,8 @@
 # EasyTicket
 [![build](https://img.shields.io/badge/build-passing-green)](https://github.com/F18-Maverick/EasyTicket/actions)  [![lint](https://img.shields.io/badge/lint-passing-green)](https://github.com/F18-Maverick/EasyTicket/actions/workflows/pylint.yml)  [![Pypacket](https://img.shields.io/badge/PyPacket-passing-green)](https://github.com/F18-Maverick/EasyTicket/actions/workflows/publish.yml)  [![docs](https://img.shields.io/badge/docs-writing-blue)](https://github.com/F18-Maverick/EasyTicket/docs)  [![pypi](https://img.shields.io/badge/PyPI-testing_v0.0.1-red)](https://test.pypi.org/manage/project/easyticket)  [![version](https://img.shields.io/badge/Release-v0.0.1-green)](https://github.com/F18-Maverick/EasyTicket/releases/tag/v0.0.1-alpha)  [![PythonVersion](https://img.shields.io/badge/Python-3.8_|_3.9_|_3.10_|_3.11_|_3.12_|_3.13-blue)](https://github.com/F18-Maverick/EasyTicket)  [![lisence](https://img.shields.io/badge/Lisnece-GNU_GPL_v3.0_or_Later-red)](https://github.com/F18-Maverick/EasyTicket/blob/main/LICENSE)  [![Sponsor](https://img.shields.io/badge/%E2%9D%A4-Sponsor%20me-%23c96198?style=flat&logo=GitHub)](https://github.com/sponsors/F18-Maverick)  
 ![Tool_ico](https://github.com/F18-Maverick/EasyTicket/blob/main/src/ticket_12306_prog_addition/download_photo.ico)  
-票票通（EasyTicket）是基于12306的快速抢票工具，用爬虫和selenium等自动化技术调用系统浏览器实现。
+票票通（EasyTicket）是基于12306的快速抢票工具，用爬虫和selenium等自动化技术调用系统浏览器实现。  
+## 支持列表
+* 操作系统：Windows | Linux | MacOS
+* 浏览器：MicroSoft Edge (系列) | Google Chrome (系列) | FireFox (系列)
+(* 注：在使用该项目前请确保你的系统浏览器已经升级到最新，但是如果你不愿意升级你的浏览器，可以选择更改项目中的驱动版本，并确保和你的系统浏览器版本相匹即可。)
