@@ -1,5 +1,5 @@
 # EasyTicket
-[![build](https://img.shields.io/badge/build-passing-green)](https://github.com/F18-Maverick/EasyTicket/actions)  [![lint](https://img.shields.io/badge/lint-passing-green)](https://github.com/F18-Maverick/EasyTicket/actions/workflows/pylint.yml)  [![Pypacket](https://img.shields.io/badge/PyPacket-passing-green)](https://github.com/F18-Maverick/EasyTicket/actions/workflows/publish.yml)  [![docs](https://img.shields.io/badge/docs-writing-blue)](https://github.com/F18-Maverick/EasyTicket/docs)  [![pypi](https://img.shields.io/badge/PyPI-testing_v0.0.1-red)](https://test.pypi.org/project/EasyTicket/0.0.1.post1/)  [![version](https://img.shields.io/badge/Release-v0.0.1-green)](https://github.com/F18-Maverick/EasyTicket/releases/tag/v0.0.1-alpha)  [![PythonVersion](https://img.shields.io/badge/Python-3.8_|_3.9_|_3.10_|_3.11_|_3.12_|_3.13-blue)](https://github.com/F18-Maverick/EasyTicket)  [![lisence](https://img.shields.io/badge/Lisnece-GNU_GPL_v3.0_or_Later-red)](https://github.com/F18-Maverick/EasyTicket/blob/main/LICENSE)  [![Sponsor](https://img.shields.io/badge/%E2%9D%A4-Sponsor%20me-%23c96198?style=flat&logo=GitHub)](https://github.com/sponsors/F18-Maverick)  
+[![build](https://img.shields.io/badge/build-passing-green)](https://github.com/F18-Maverick/EasyTicket/actions)  [![lint](https://img.shields.io/badge/lint-passing-green)](https://github.com/F18-Maverick/EasyTicket/actions/workflows/pylint.yml)  [![Pypacket](https://img.shields.io/badge/PyPacket-passing-green)](https://github.com/F18-Maverick/EasyTicket/actions/workflows/publish.yml)  [![docs](https://img.shields.io/badge/docs-writing-blue)](https://github.com/F18-Maverick/EasyTicket/docs)  [![pypi](https://img.shields.io/badge/PyPI-testing_v0.0.1-red)](https://test.pypi.org/project/EasyTicket/0.0.1.post3/)  [![version](https://img.shields.io/badge/Release-v0.0.1-green)](https://github.com/F18-Maverick/EasyTicket/releases/tag/v0.0.1-alpha)  [![PythonVersion](https://img.shields.io/badge/Python-3.8_|_3.9_|_3.10_|_3.11_|_3.12_|_3.13-blue)](https://github.com/F18-Maverick/EasyTicket)  [![lisence](https://img.shields.io/badge/Lisnece-GNU_GPL_v3.0_or_Later-red)](https://github.com/F18-Maverick/EasyTicket/blob/main/LICENSE)  [![Sponsor](https://img.shields.io/badge/%E2%9D%A4-Sponsor%20me-%23c96198?style=flat&logo=GitHub)](https://github.com/sponsors/F18-Maverick)  
 
 <div align=center>
 <img src="https://github.com/F18-Maverick/EasyTicket/blob/main/src/EasyTicket/ticket_12306_prog_addition/download_photo.ico" width="120" height="120">
@@ -18,6 +18,10 @@
 &emsp; (* 注：当前pip仍然为测试版)
 ```sh
 pip install -i https://test.pypi.org/simple/ EasyTicket==0.0.1.post3
+```
+&emsp; 等待安装完成后，python可以通过直接输入项目名称启动
+```sh
+python -m EasyTicket
 ```
 ### 2, 通过MakeFile安装：
 &emsp; (* 注：正在制作中)
