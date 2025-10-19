@@ -166,6 +166,8 @@ class train_ticket_choose_UI:
                 self.period_start_name=self.train_info_lists[self.text_train_code-1][1]
                 self.period_end_name=self.train_info_lists[self.text_train_code-1][2]
                 self.period_start_time=self.train_info_lists[self.text_train_code-1][3]
+                with open(self.train_code_dir, "w", encoding="utf-8") as train_code:
+                    train_code.write(str(self.text_train_code))
                 self.get_ticket_thread()
         elif self.condition=="2":
             self.period_start_name=[]
