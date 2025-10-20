@@ -23,7 +23,7 @@ class sign_in:
             self.screen_sign_in_x, self.screen_sign_in_y)
         self.New_choose_sign_in_Windows = self.windows_sign_in.geometry(
             self.windows_sign_in_position_str)
-        self.contact_info_text = tkinter.Label(self.windows_sign_in, text="用户名/密码/手机号")
+        self.contact_info_text = tkinter.Label(self.windows_sign_in, text="用户名/邮箱/手机号")
         self.contact_info_text.place(x=self.x_entry, y=self.y_entry-20)
         self.contact_info_entry = tkinter.Entry(
             self.windows_sign_in, background="#FFFFFF", foreground="#4B0082",
@@ -55,6 +55,7 @@ class sign_in:
                                   len(self.password)<6 or len(self.ID_card_value)<4 or len(self.ID_card_value)>4)
         if self.info_is_valid_state:
             tkinter.messagebox.showerror(title="登录错误", message="请输入正确的登录信息")
+            self.windows_sign_in.destroy()
             sign_in(self.computer_info_width, self.computer_info_height, self.file_dir)
         else:
             self.get_result=[self.contact_info, self.password, self.ID_card_value]

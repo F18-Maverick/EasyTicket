@@ -2,8 +2,13 @@ import os
 import time
 import tkinter
 import threading
+from tkinter import messagebox
 class get_valid_code:
     def __init__(self, computer_info_width, computer_info_height, file_dir, phone_number):
+        self.computer_info_width=computer_info_width
+        self.computer_info_height=computer_info_height
+        self.file_dir=file_dir
+        self.phone_number=phone_number
         self.is_window_destory=False
         self.count_total_run=0
         self.button_resend_valid_code=None
@@ -76,9 +81,14 @@ class get_valid_code:
         self.contact_info=self.valid_code_entry.get()
         if not os.path.exists(self.temp_dir):
             os.makedirs(self.temp_dir)
-        with open(os.path.join(self.temp_dir, "data_socket_user_valid_code_info.log"), "w", encoding="utf-8") as datalog_write:
-            datalog_write.write(str(self.contact_info))
-        self.windows_get_valid_code.destroy()
+        if self.contact_info==None or len(str(self.contact_info).lstrip())==0:
+            tkinter.messagebox.showerror(title="验证码错误", message="请输入正确的验证码")
+            self.windows_get_valid_code.destroy()
+            get_valid_code(self.computer_info_width, self.computer_info_height, self.file_dir, self.phone_number)
+        else:
+            with open(os.path.join(self.temp_dir, "data_socket_user_valid_code_info.log"), "w", encoding="utf-8") as datalog_write:
+                datalog_write.write(str(self.contact_info))
+            self.windows_get_valid_code.destroy()
     def button_get_sign_in_info(self):
         self.button_sign_in_sure = tkinter.Button(
             self.windows_get_valid_code, text="确认", width=8, height=1, font=("Arial", 8, "underline"))
