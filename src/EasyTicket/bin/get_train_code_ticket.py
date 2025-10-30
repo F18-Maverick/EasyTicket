@@ -9,6 +9,7 @@ from .sign_in_UI import sign_in
 from . import browsers_searcher
 from . select_ticket_buyer_UI import buyer_selection
 from .get_valid_code_UI import get_valid_code
+from . import deal_browser_driver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
@@ -16,7 +17,7 @@ from selenium.webdriver.support import expected_conditions as EC
 class get_ticket:
     def __init__(self, train_code, choose_start_station, choose_end_station, period_start_station, period_end_station,
                  train_go_date, condition, choose_index_train, train_start_time, train_code_list, reflex_table, file_dir,
-                 computer_screen_height, computer_screen_width):
+                 computer_screen_height, computer_screen_width, total_ticket_num):
         self.is_exist=False
         self.is_over_time=False
         self.is_valid_code_pass=None
@@ -47,6 +48,8 @@ class get_ticket:
         self.reflex_table=reflex_table
         self.computer_width=computer_screen_width
         self.computer_high=computer_screen_height
+        self.total_ticket_num=total_ticket_num
+        print(self.total_ticket_num)
         self.cookies = [{"name": "JSESSIONID", "value": "9A3A60B55A2ACC51B24B6742E68E6230"},
                         {"name": "RAIL_EXPIRATION", "value": "1582469373862"},
                         {"name": "RAIL_DEVICEID",
@@ -202,10 +205,17 @@ class get_ticket:
                 continue
             break
         if self.count==len(self.choosed_driver_name_list):
-            tkinter.messagebox.showerror(title="Error", message="无法使用任何浏览器，请提交issues至该项目的GitHub仓库")
+            tkinter.messagebox.showerror(title="Error", message="无法使用任何浏览器，请确保您的系统浏览器或浏览器驱动已升级到最新。")
+            deal_browser_driver.check_browsers_drivers_error(
+                self.browsers_dir_list, self.choosed_driver_name_list, self.computer_width, self.computer_high)
         else:
             pass
     def get_train_ticket_button(self):
+        for ticket_range_index in range(self.total_ticket_num):
+            self.train_ticket_label_xpath=(
+                r"/html/body/div[2]/div[7]/div[13]/table/tbody/tr[{}]".formate(ticket_range_index*2))
+            self.ticket_label_element=self.driver.find_element(By.XPATH, self.train_ticket_label_xpath)
+            self.ticket_label_html=self.ticket_label_element.get_attribute("outerHTML")
         self.select_info_list=None
         self.reflex_table_keys=list(self.reflex_table.keys())
         self.reflex_table_values=list(self.reflex_table.values())

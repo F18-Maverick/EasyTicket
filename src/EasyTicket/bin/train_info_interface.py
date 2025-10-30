@@ -135,7 +135,8 @@ class train_ticket_choose_UI:
             args=(self.text_train_code, self.choosed_start_station, self.choosed_end_station,
                   self.period_start_name, self.period_end_name, self.train_go_date, self.condition,
                   self.choose_train_ticket, self.period_start_time, self.train_code_list,
-                  self.reflex_table, self.current_dir_this_file, self.main_window_height, self.main_window_width),
+                  self.reflex_table, self.current_dir_this_file, self.main_window_height, self.main_window_width, 
+                  len(self.train_info_dict)),
             name="thread10", daemon=True)
         self.ticket_choose_train_thread_start = self.ticket_choose_train_thread.start()
     def get_enter_contant(self):

@@ -282,8 +282,6 @@ class get_ticket_station_info:
                     del self.reflex_table_values_list[left_train_code_index+1]
         for index in range(len(self.reflex_table_values_list)):
             self.reflex_table[self.reflex_table_keys_list[index]]=self.reflex_table_values_list[index]
-            print(self.reflex_table_values_list[index])
-            print(self.train_code_list[self.reflex_table_values_list[index]])
         print(self.reflex_table)
         with open(os.path.join(self.temp_dir, "all_TrainStation_info.json"), "w", encoding="utf-8") as train_info_json:
             train_info_json.write(json.dumps(self.ticket_all_info_dict, ensure_ascii=False))
