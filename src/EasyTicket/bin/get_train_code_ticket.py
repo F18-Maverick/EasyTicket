@@ -481,6 +481,7 @@ class get_ticket:
             self.sign_in()
         self.get_sure_valid_code()
     def get_sure_valid_code(self):
+        self.valid_code_info=None
         self.get_valid_code_thread=threading.Thread(
             target=get_valid_code,
             args=(self.computer_width, self.computer_high, self.file_dir_name, self.sign_in_info[0]),
@@ -488,16 +489,19 @@ class get_ticket:
         self.get_valid_code_thread.start()
         while True: # Why this fucking code always can't work in the expression
             if os.path.exists(self.valid_code_socket_file)==True:
-                self.is_exist=True
-                break
+                try:
+                    with open(self.valid_code_socket_file, "r", encoding="utf-8") as valid_code_info:
+                        self.valid_code_info=valid_code_info.read()
+                    self.is_exist=True
+                    break
+                except:
+                    pass
             if os.path.exists(self.valid_code_resend_file)==True:
                 self.get_valid_code_button = WebDriverWait(self.driver, timeout=20).until(
                     EC.element_to_be_clickable((By.XPATH, self.get_valid_code_xpath)))
                 self.get_valid_code_button.click()
                 os.remove(self.valid_code_resend_file)
         self.is_exist=False
-        with open(self.valid_code_socket_file, "r", encoding="utf-8") as valid_code_info:
-            self.valid_code_info=valid_code_info.read()
         self.valid_code_input=WebDriverWait(self.driver, timeout=20).until(
             EC.element_to_be_clickable((By.XPATH, self.input_valid_code_xpath)))
         self.valid_code_input.click()
@@ -588,6 +592,7 @@ class get_ticket:
         self.is_over_time=True
         print(self.is_over_time, "exit the loop")
     def ensure_ticket_info(self):
+        self.passengers_name_read=None
         self.give_ticket_info_xpath=r"/html/body/div[1]/div[11]/div[5]/a[2]"
         self.ticket_sure_xpath=r"/html/body/div[5]/div/div[5]/div[1]/div/div[2]/div[2]/div[8]/a[2]"
         self.tip_sure_xpath=r"/html/body/div[4]/div[2]/div[2]/div[2]/a"
@@ -602,11 +607,14 @@ class get_ticket:
         self.passenger_name_UI_thread.start()
         while True:
             if os.path.exists(self.passengers_name_file)==True:
-                self.is_exist=True
-                break
+                try:
+                    with open(self.passengers_name_file, "r", encoding="utf-8") as passengers_name_file:
+                        self.passengers_name_read=passengers_name_file.read()
+                    self.is_exist=True
+                    break
+                except:
+                    pass
         self.is_exist=False
-        with open(self.passengers_name_file, "r", encoding="utf-8") as passengers_name_file:
-            self.passengers_name_read=passengers_name_file.read()
         self.passengers_name_list=ast.literal_eval(self.passengers_name_read)
         for passenger_name in self.passengers_name_list:
             self.label_index = 0
