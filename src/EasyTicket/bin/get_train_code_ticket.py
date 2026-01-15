@@ -432,11 +432,14 @@ class get_ticket:
             sign_in(self.computer_width, self.computer_high, self.file_dir_name)
         while True:
             if os.path.exists(self.sign_in_socket_file)==True:
-                self.is_exist=True
-                break
+                try:
+                    with open(self.sign_in_socket_file, "r", encoding="utf-8") as sign_in_info:
+                        self.sign_in_info=sign_in_info.read()
+                    self.is_exist=True
+                    break
+                except:
+                    pass
         self.is_exist=False
-        with open(self.sign_in_socket_file, "r", encoding="utf-8") as sign_in_info:
-            self.sign_in_info=sign_in_info.read()
         self.sign_in_info=ast.literal_eval(self.sign_in_info)
         self.contact_info_input=WebDriverWait(self.driver, timeout=20).until(
             EC.element_to_be_clickable((By.XPATH, self.contact_input_xpath)))
