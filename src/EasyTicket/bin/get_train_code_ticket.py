@@ -597,7 +597,7 @@ class get_ticket:
     def ensure_ticket_info(self):
         self.passengers_name_read=None
         self.give_ticket_info_xpath=r"/html/body/div[1]/div[11]/div[5]/a[2]"
-        self.ticket_sure_xpath=r"/html/body/div[5]/div/div[5]/div[1]/div/div[2]/div[2]/div[8]/a[2]"
+        self.ticket_sure_xpath=r"/html/body/div[5]/div/div[5]/div[1]/div/div[2]/div[2]/div[7]/a[2]" # /html/body/div[5]/div/div[5]/div[1]/div/div[2]/div[2]/div[8]/a[2]
         self.tip_sure_xpath=r"/html/body/div[4]/div[2]/div[2]/div[2]/a"
         self.ticket_get_succeess_xpath=r"/html/body/div[1]/div[2]/div[1]/div/h3/span"
         self.passengers_name_file=os.path.join(self.temp_dir, "data_socket_buyer_name_info.log")
