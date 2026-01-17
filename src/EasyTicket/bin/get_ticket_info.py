@@ -20,7 +20,8 @@ class get_ticket_station_info:
         self.current_dir_this_file = ""
         for j in self.dir_bar_list:
             self.current_dir_this_file += j
-        self.ssl_context_dir=os.path.join(self.current_dir_this_file, "ticket_12306_prog_addition", "cacert.pem")
+        self.ssl_context_dir=os.path.join(
+            self.current_dir_this_file, "ticket_12306_prog_addition", "cacert.pem")
         self.temp_dir = os.path.join(self.current_dir_this_file, "temp")
         self.main_window_height=main_window_height
         self.main_window_width=main_window_width
@@ -33,9 +34,12 @@ class get_ticket_station_info:
         self.end_city=None
         self.date_start=None
         if os.path.exists(self.temp_dir):
-            self.temp_dir_start = os.path.join(self.temp_dir, "data_socket_start_station.log")
-            self.temp_dir_end = os.path.join(self.temp_dir, "data_socket_end_station.log")
-            self.temp_dir_date = os.path.join(self.temp_dir, "data_socket_start_date.log")
+            self.temp_dir_start = os.path.join(
+                self.temp_dir, "data_socket_start_station.log")
+            self.temp_dir_end = os.path.join(
+                self.temp_dir, "data_socket_end_station.log")
+            self.temp_dir_date = os.path.join(
+                self.temp_dir, "data_socket_start_date.log")
             with open(self.temp_dir_start, "r", encoding="utf-8") as read_start:
                 self.read_condition_start=read_start.read()
             with open(self.temp_dir_end, "r", encoding="utf-8") as read_end:
@@ -66,8 +70,10 @@ class get_ticket_station_info:
         self.station_name_url="https://kyfw.12306.cn/otn/resources/js/framework/station_name.js?station_version=1.9330"
         self.train_info_url=\
             "https://kyfw.12306.cn/otn/leftTicket/queryO?leftTicketDTO.train_date={}&leftTicketDTO.from_station={}&leftTicketDTO.to_station={}&purpose_codes={}"
-        self.add_url_headers = urllib.request.Request(url=self.station_name_url, headers=self.header)
-        self.response_url=urllib.request.urlopen(self.add_url_headers, context=self.constant)
+        self.add_url_headers = urllib.request.Request(
+            url=self.station_name_url, headers=self.header)
+        self.response_url=urllib.request.urlopen(
+            self.add_url_headers, context=self.constant)
         self.station_name_info=self.response_url.read().decode("utf-8")
         self.count=0
         self.count_1 = []
@@ -98,7 +104,8 @@ class get_ticket_station_info:
                         break
             for all_station_name_index in range(len(self.count_1)-1):
                 self.station_name=""
-                for station_name_index in range(self.count_1[all_station_name_index]+1, self.count_1[all_station_name_index+1]):
+                for station_name_index in range(
+                    self.count_1[all_station_name_index]+1, self.count_1[all_station_name_index+1]):
                     self.station_name+=all_station[station_name_index]
             self.station_name_list.append(self.station_name)
             for symbol_index_1 in range(len(all_station)):
@@ -111,11 +118,13 @@ class get_ticket_station_info:
                         break
             for all_station_symbol_index in range(len(self.count_4)-1):
                 self.station_symbol=""
-                for station_symbol_index in range(self.count_4[all_station_symbol_index]+1, self.count_4[all_station_symbol_index+1]):
+                for station_symbol_index in range(
+                    self.count_4[all_station_symbol_index]+1, self.count_4[all_station_symbol_index+1]):
                     self.station_symbol+=all_station[station_symbol_index]
             self.station_symbol_list.append(self.station_symbol)
         for all_station_info_index in range(len(self.station_name_list)):
-            self.station_info_dict[self.station_name_list[all_station_info_index]]=self.station_symbol_list[all_station_info_index]
+            self.station_info_dict[
+                self.station_name_list[all_station_info_index]]=self.station_symbol_list[all_station_info_index]
         if not os.path.exists(self.temp_dir):
             os.makedirs(self.temp_dir)
         with open(os.path.join(self.temp_dir, "station_name_info.json"), "w", encoding="utf-8") as datalog_write:
@@ -138,9 +147,12 @@ class get_ticket_station_info:
                 message="请填写正确的购票信息(出发时间, 出发车站, 到达车站)")
         else:
             self.station_end_symbol=self.station_info_dict[self.end_city].upper()
-        self.train_info_url_compleat=self.train_info_url.format(self.date_start, self.station_start_symbol, self.station_end_symbol, "ADULT")
-        self.add_url_headers_train_info = urllib.request.Request(url=self.train_info_url_compleat, headers=self.header)
-        self.response_url_train = urllib.request.urlopen(self.add_url_headers_train_info, context=self.constant)
+        self.train_info_url_compleat=self.train_info_url.format(
+            self.date_start, self.station_start_symbol, self.station_end_symbol, "ADULT")
+        self.add_url_headers_train_info = urllib.request.Request(
+            url=self.train_info_url_compleat, headers=self.header)
+        self.response_url_train = urllib.request.urlopen(
+            self.add_url_headers_train_info, context=self.constant)
         self.statude_code=self.response_url_train.getcode()
         self.train_info = self.response_url_train.read().decode("utf-8")
         self.train_info_dict=json.loads(self.train_info)
@@ -291,21 +303,3 @@ class get_ticket_station_info:
                   self.date_start, self.start_city, self.end_city, self.reflex_table),
             name="thread5", daemon=True)
         self.ticket_choose_interface_thread.start()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

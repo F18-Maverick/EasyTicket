@@ -26,15 +26,3 @@ class thread_all:
             target=get_ticket_info.get_ticket_station_info, args=(computer_height, computer_width),
             name="thread4", daemon=True)
         self.thread_station_info.start()
-
-
-
-
-
-
-
-
-
-
-
-

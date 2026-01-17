@@ -65,8 +65,3 @@ class choose_start_station:
             self.windows_choose_start_station, text="确认", width=8, height=1, font=("Arial", 8, "underline"))
         self.button_get_start_station_sure.pack(side=tkinter.BOTTOM)
         self.bind_func_sure=self.button_get_start_station_sure.bind("<Button-1>", lambda event: self.sure_button_operate())
-
-
-
-
-

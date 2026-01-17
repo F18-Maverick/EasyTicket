@@ -96,20 +96,3 @@ class get_valid_code:
             self.windows_get_valid_code, text="确认", width=8, height=1, font=("Arial", 8, "underline"))
         self.button_sign_in_sure.pack(side=tkinter.BOTTOM)
         self.bind_func_sure = self.button_sign_in_sure.bind("<Button-1>", lambda event: self.get_data())
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

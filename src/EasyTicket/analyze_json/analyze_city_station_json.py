@@ -13,7 +13,8 @@ class all_city_station:
         self.current_dir_this_file = ""
         for j in self.dir_bar_list:
             self.current_dir_this_file += j
-        self.city_station_json_path = os.path.join(self.current_dir_this_file, 'ticket_12306_prog_addition', 'cityTrain.json')
+        self.city_station_json_path = os.path.join(
+            self.current_dir_this_file, 'ticket_12306_prog_addition', 'cityTrain.json')
         self.city_data=None
         with open(self.city_station_json_path, 'r', encoding="utf-8") as self.city_station_json_file:
             self.city_data = json.load(self.city_station_json_file)
@@ -53,11 +54,3 @@ class all_city_station:
             self.station_py_code=every_city_info["py_code"]
             self.station_py_code_list.append(self.station_py_code)
         return self.station_py_code_list
-
-
-
-
-
-
-
-

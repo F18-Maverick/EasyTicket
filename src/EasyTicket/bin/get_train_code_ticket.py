@@ -60,8 +60,10 @@ class get_ticket:
                          "value": "ERLN34ss4QuQiVGSBZaJz35V5mfm37V7QotSqYowrxa7ljZeEnI-RQjWRUTV8qjMdb5w8sps-WX286eIS9RF7Y_TOr4Cj6wSa_4UIfjh8GwzQPfWOV6nz8EIIIEfX-3ciBnc11jpF14E5BBpRzAqtiV8gdANBiKr"},
                         {"name": "BIGipServerpool_passport", "value": "267190794.50215.0000"},
                         {"name": "route", "value": "495c805987d0f5c8c84b14f60212447d"}]
-        print(self.train_code, self.choose_start_station, self.choose_end_station, self.period_start_station, self.period_end_station,
-              self.train_go_date, self.condition, self.choose_index_train, self.train_start_time, self.train_code_list, self.reflex_table)
+        print(self.train_code, self.choose_start_station, self.choose_end_station, 
+              self.period_start_station, self.period_end_station, self.train_go_date, 
+              self.condition, self.choose_index_train, self.train_start_time, 
+              self.train_code_list, self.reflex_table)
     def open_browsers(self):
         self.add_uknown_browser_driver_log=os.path.join(
                 self.temp_dir, "data_socket_unknown_browser_driver_info.log")
@@ -72,8 +74,10 @@ class get_ticket:
                     "driver", "browser")
         self.count=0
         self.abs_dir = os.path.dirname(os.path.abspath(__file__))
-        self.inborn_driver_list=["firefox", "waterfox", "firefox-developer", "firefox-nightly", "msedge", "msedge-dev", "msedge-beta",
-                                 "msedge-canary", "chromium", "chrome", "chrome-canary", "chrome-dev", "ungoogled-chromium"]
+        self.inborn_driver_list=["firefox", "waterfox", "firefox-developer", 
+                                 "firefox-nightly", "msedge", "msedge-dev", "msedge-beta",
+                                 "msedge-canary", "chromium", "chrome", "chrome-canary", 
+                                 "chrome-dev", "ungoogled-chromium"]
         self.browsers_list=browsers_searcher.get()
         self.choosed_driver_type_list=[]
         self.choosed_driver_name_list=[]
@@ -134,19 +138,20 @@ class get_ticket:
                     self.browsers_dir_list.append(self.browser_dir)
                     if (self.system_type=="win32" or self.system_type=="cygwin" or self.system_type=="win64"
                         or self.system_type=="windows" or self.system_type=="Windows"):
-                        if (self.choosed_driver=="firefox" or self.choosed_driver=="waterfox" or self.choosed_driver=="firefox-developer"
-                            or self.choosed_driver=="firefox-nightly"):
+                        if (self.choosed_driver=="firefox" or self.choosed_driver=="waterfox" 
+                            or self.choosed_driver=="firefox-developer" or self.choosed_driver=="firefox-nightly"):
                             self.choosed_driver_name="geckodriver.exe"
                             self.choosed_driver_name_list.append(self.choosed_driver_name)
                             self.choosed_driver_type_list.append(self.choosed_driver)
                             self.choosed_browsers_dir_list.append(self.browser_dir)
-                        elif (self.choosed_driver=="msedge" or self.choosed_driver=="msedge-dev" or self.choosed_driver=="msedge-beta"
-                              or self.choosed_driver=="msedge-canary"):
+                        elif (self.choosed_driver=="msedge" or self.choosed_driver=="msedge-dev" 
+                              or self.choosed_driver=="msedge-beta" or self.choosed_driver=="msedge-canary"):
                             self.choosed_driver_name="msedgedriver.exe"
                             self.choosed_driver_name_list.append(self.choosed_driver_name)
                             self.choosed_driver_type_list.append(self.choosed_driver)
                             self.choosed_browsers_dir_list.append(self.browser_dir)
-                        elif self.choosed_driver=="chromium" or self.choosed_driver=="chrome" or self.choosed_driver=="chrome-canary":
+                        elif (self.choosed_driver=="chromium" or self.choosed_driver=="chrome" 
+                              or self.choosed_driver=="chrome-canary"):
                             self.choosed_driver_name="chromedriver.exe"
                             self.choosed_driver_name_list.append(self.choosed_driver_name)
                             self.choosed_driver_type_list.append(self.choosed_driver)
@@ -166,8 +171,8 @@ class get_ticket:
                             self.choosed_driver_name_list.append(self.choosed_driver_name)
                             self.choosed_driver_type_list.append(self.choosed_driver)
                             self.choosed_browsers_dir_list.append(self.browser_dir)
-                        elif (self.choosed_driver=="chrome" or self.choosed_driver=="chrome-dev" or self.choosed_driver=="chromium"
-                              or self.choosed_driver=="ungoogled-chromium"):
+                        elif (self.choosed_driver=="chrome" or self.choosed_driver=="chrome-dev" 
+                              or self.choosed_driver=="chromium" or self.choosed_driver=="ungoogled-chromium"):
                             self.choosed_driver_name="chromedriver"
                             self.choosed_driver_name_list.append(self.choosed_driver_name)
                             self.choosed_driver_type_list.append(self.choosed_driver)
@@ -179,22 +184,22 @@ class get_ticket:
                     elif self.system_type=="darwin":
                         tkinter.messagebox.showinfo(
                             title="提示",
-                            message="本项目没有自带该系统的驱动程序，请手动下载并通过接下来的提示手动添加驱动程序")
-                        if (self.choosed_driver_name=="firefox" or self.choosed_driver_name=="firefox-developer" or
-                            self.choosed_driver_name=="firefox-nightly"):
+                            message="本项目没有自带该系统的驱动程序, 请手动下载并通过接下来的提示手动添加驱动程序")
+                        if (self.choosed_driver_name=="firefox" or self.choosed_driver_name=="firefox-developer" 
+                            or self.choosed_driver_name=="firefox-nightly"):
                             self.choosed_driver_name = "geckodriver"
                             self.choosed_driver_name_list.append(self.choosed_driver_name)
                             self.choosed_driver_type_list.append(self.choosed_driver)
                             self.choosed_browsers_dir_list.append(self.browser_dir)
-                        elif (self.choosed_driver_name=="msedge" or self.choosed_driver_name=="msedge-beta" or
-                              self.choosed_driver_name=="msedge-dev" or self.choosed_driver_name=="msedge-canary"):
+                        elif (self.choosed_driver_name=="msedge" or self.choosed_driver_name=="msedge-beta" 
+                              or self.choosed_driver_name=="msedge-dev" or self.choosed_driver_name=="msedge-canary"):
                             self.choosed_driver_name = "msedgedriver"
                             self.choosed_driver_name_list.append(self.choosed_driver_name)
                             self.choosed_driver_type_list.append(self.choosed_driver)
                             self.choosed_browsers_dir_list.append(self.browser_dir)
-                        elif (self.choosed_driver=="chrome" or self.choosed_driver=="chrome-beta" or self.choosed_driver=="chrome-canary"
-                              or self.choosed_driver=="chrome-dev" or self.choosed_driver_name=="chrome-test" or
-                              self.choosed_driver_name=="chromium"):
+                        elif (self.choosed_driver=="chrome" or self.choosed_driver=="chrome-beta" 
+                              or self.choosed_driver=="chrome-canary" or self.choosed_driver=="chrome-dev" 
+                              or self.choosed_driver_name=="chrome-test" or self.choosed_driver_name=="chromium"):
                             self.choosed_driver_name="chromedriver"
                             self.choosed_driver_name_list.append(self.choosed_driver_name)
                             self.choosed_driver_type_list.append(self.choosed_driver)
@@ -206,9 +211,10 @@ class get_ticket:
                     else:
                         tkinter.messagebox.showerror(
                             title="不兼容",
-                            message="如果您正在使用源码运行该项目，说明该源码暂时不兼容您的操作系统，请阅读readme文件并安装本项目以更好的兼容。如问题仍未解决，请发布issue")
+                            message="如果您正在使用源码运行该项目, 说明该源码暂时不兼容您的操作系统, 请阅读readme文件并安装本项目以更好的兼容。如问题仍未解决, 请发布issue")
                         add_new_browser_driver_to_list()
-        print(self.choosed_driver_type_list, "...", self.choosed_driver_name_list, "...", self.choosed_browsers_dir_list, "...", self.browsers_dir_list)
+        print(self.choosed_driver_type_list, "...", self.choosed_driver_name_list, 
+              "...", self.choosed_browsers_dir_list, "...", self.browsers_dir_list)
         for index in range(len(self.choosed_driver_name_list)):
             self.driver_dir = os.path.join(self.abs_dir, "driver", self.choosed_driver_name_list[index])
             try:
@@ -284,7 +290,7 @@ class get_ticket:
                     self.web_get_ticket()
                 else:
                     tkinter.messagebox.showerror(title="调用错误", 
-                                                 message="未找到可用的浏览器驱动，请检查输入的浏览器类型是否正确")
+                                                 message="未找到可用的浏览器驱动, 请检查输入的浏览器类型是否正确。")
                     self.open_browsers()
             except:
                 self.inital_vars(self.kwargs)
@@ -295,7 +301,8 @@ class get_ticket:
             self.record_result_file_dir=os.path.join(
                 self.temp_dir, self.result_record_file_name)
             self.deal_result=None
-            tkinter.messagebox.showerror(title="错误", message="无法使用任何浏览器，请确保您的系统浏览器或浏览器驱动已升级到最新。")
+            tkinter.messagebox.showerror(title="错误", 
+                                         message="无法使用任何浏览器, 请确保您的系统浏览器或浏览器驱动已升级到最新。")
             deal_func_init=deal_browser_driver.check_browsers_drivers_error(
                 self.browsers_dir_copy_list, self.choosed_driver_name_list, 
                 self.computer_width, self.computer_high, self.temp_dir)
@@ -310,7 +317,8 @@ class get_ticket:
                 if self.deal_result=="True":
                     self.open_browsers()
                 else:
-                    tkinter.messagebox.showerror(title="未能解决", message="无法解决问题, 请阅读readme或发布issue")
+                    tkinter.messagebox.showerror(title="未能解决", 
+                                                 message="无法解决问题, 请阅读readme或发布issue")
             else:
                 pass
         else:
@@ -393,12 +401,12 @@ class get_ticket:
         else:
             tkinter.messagebox.showerror(
                 title="未知错误",
-                message="无法解决的问题，请在本项目的issues区发布issue")
+                message="无法解决的问题, 请在本项目的issues区发布issue")
             pass
         if self.is_already_error==True:
             tkinter.messagebox.showerror(
                 title="未知错误",
-                message="无法解决的问题，请在本项目的issues区发布issue")
+                message="无法解决的问题, 请在本项目的issues区发布issue")
         else:
             pass
     def sign_in(self):
@@ -471,12 +479,14 @@ class get_ticket:
                     self.is_statement_exit = True
                     break
             except:
-                tkinter.messagebox.showerror(title="登录错误", message="请填写正确的登录信息")
+                tkinter.messagebox.showerror(title="登录错误", 
+                                             message="请填写正确的登录信息")
         self.is_statement_exit=False
         self.valid_code_statement_text = self.driver.find_element(By.XPATH, self.sign_in_statement_xpath).text
         print(self.valid_code_statement_text)
         if self.valid_code_statement_text=="请输入正确的用户信息!":
-            tkinter.messagebox.showerror(title="登录错误", message="请输入正确的用户信息!")
+            tkinter.messagebox.showerror(title="登录错误", 
+                                         message="请输入正确的用户信息!")
             os.remove(self.sign_in_socket_file)
             self.before_valid_code_button = WebDriverWait(self.driver, timeout=20).until(
                 EC.element_to_be_clickable((By.XPATH, self.before_valid_code_xpath)))
@@ -546,7 +556,8 @@ class get_ticket:
             if self.driver.find_element(By.XPATH, self.sign_in_statement_xpath).is_displayed()==True:
                 self.valid_code_statement_text = self.driver.find_element(By.XPATH, self.sign_in_statement_xpath).text
                 if self.valid_code_statement_text == "用户名或密码错误。":
-                    tkinter.messagebox.showerror(title="登录错误", message="用户名或密码错误。")
+                    tkinter.messagebox.showerror(title="登录错误", 
+                                                 message="用户名或密码错误。")
                     os.remove(self.sign_in_socket_file)
                     self.before_valid_code_button = WebDriverWait(self.driver, timeout=20).until(
                         EC.element_to_be_clickable((By.XPATH, self.before_valid_code_xpath)))
@@ -555,7 +566,8 @@ class get_ticket:
                 if (self.valid_code_statement_text == "请输入正确验证码" or 
                     self.valid_code_statement_text=="很抱歉，您输入的短信验证码有误。" or 
                     self.valid_code_statement_text=="请输入验证码"):
-                    tkinter.messagebox.showerror(title="登录错误", message="短信验证码有误。")
+                    tkinter.messagebox.showerror(title="登录错误", 
+                                                 message="短信验证码有误。")
                     os.remove(self.valid_code_socket_file)
                     self.before_valid_code_button = WebDriverWait(self.driver, timeout=20).until(
                         EC.element_to_be_clickable((By.XPATH, self.before_valid_code_xpath)))
@@ -637,7 +649,8 @@ class get_ticket:
                 self.label_index+=1
                 pass
             if self.label_index==len(self.passengers_name_list)-1:
-                tkinter.messagebox.showerror(title="选择乘车人错误", message="没有对应的乘车人，请确保已经在12306官网添加乘车人")
+                tkinter.messagebox.showerror(title="选择乘车人错误", 
+                                             message="没有对应的乘车人, 请确保已经在12306官网添加乘车人")
                 self.ensure_ticket_info()
         self.give_ticket_info_button = WebDriverWait(self.driver, timeout=20).until(
             EC.element_to_be_clickable((By.XPATH, self.give_ticket_info_xpath)))
@@ -659,7 +672,8 @@ class get_ticket:
             except:
                 pass
         self.is_statement_exit=False
-        tkinter.messagebox.showinfo(title="抢票成功", message="成功抢票，请在浏览器中完成订单支付")
+        tkinter.messagebox.showinfo(title="抢票成功", 
+                                    message="成功抢票, 请在浏览器中完成订单支付")
     def web_get_ticket(self):
         self.from_station_input = WebDriverWait(self.driver, timeout=20).until(
             EC.element_to_be_clickable((By.ID, "fromStationText")))
@@ -685,24 +699,3 @@ class get_ticket:
         self.get_train_ticket_button()
         self.sign_in()
         self.ensure_ticket_info()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

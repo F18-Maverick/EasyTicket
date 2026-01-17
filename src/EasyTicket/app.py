@@ -9,8 +9,3 @@ class run_function:
         self.entry_place = self.run_get_ticket.Entry_Function()
         self.entry_button = self.run_get_ticket.Windows_Button()
         self.Main_Loop = main_loop()
-
-
-
-
-

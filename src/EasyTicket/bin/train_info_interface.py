@@ -219,14 +219,3 @@ class train_ticket_choose_UI:
         self.button_get_train_code.place(x=self.x, y=self.y, anchor="ne")
         self.get_train_code = self.button_get_train_code.bind(
             "<Button-1>", lambda event: self.get_enter_contant())
-
-
-
-
-
-
-
-
-
-
-

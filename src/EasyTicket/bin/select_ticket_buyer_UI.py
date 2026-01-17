@@ -12,9 +12,6 @@ class buyer_selection:
         self.x_entry = 50
         self.y_entry = (80/3)-25
         self.windows_buyer = tkinter.Toplevel()
-        # self.windows_buyer = tkinter.Tk()
-        # self.windows_choose_start_time_icon = self.windows_choose_start_time.iconbitmap(
-        #     r"./ticket_12306_prog_addition/download_photo.ico")
         self.title_1 = self.windows_buyer.title("填写登录信息")
         self.windows_choose_buyer_height = 300
         self.windows_choose_buyer_width = 500
@@ -79,22 +76,3 @@ class buyer_selection:
             x=self.windows_choose_buyer_width, y=self.windows_choose_buyer_height, anchor="se")
         self.bind_func_delete_buyer=self.button_delete_buyer_input_field.bind(
             "<Button-1>", lambda event: self.delete_buyer_input_field())
-
-
-# if __name__=="__main__":
-#     buyer_selection(2560, 1600, r"D:\project\python\pythonProject1\Web_Crawler\Analyze_Number\Numers_Analyze_Beta\Analyze_number_mainfile\ticket_12306")
-#     tkinter.mainloop()
-
-
-
-
-
-
-
-
-
-
-
-
-
-

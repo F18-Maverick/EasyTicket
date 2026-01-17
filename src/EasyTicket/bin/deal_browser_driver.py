@@ -233,17 +233,3 @@ class check_browsers_drivers_error:
                 return False
         copy_btn = tkinter.Button(root, text="复制文件", command=copy_file, width=15)
         copy_btn.pack(pady=10)
-
-
-
-
-
-
-
-
-
-
-
-
-
-

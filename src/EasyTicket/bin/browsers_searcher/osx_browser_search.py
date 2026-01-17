@@ -91,16 +91,3 @@ def _reverse_brave_version(version: str) -> str:
     major_minor, patch = version.split(".", 1)
     major, minor = divmod(int(major_minor), 100)
     return f"{major}.{minor}.{patch}"
-
-
-
-
-
-
-
-
-
-
-
-
-

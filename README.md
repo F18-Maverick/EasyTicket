@@ -41,4 +41,3 @@ python ./run.py
 
 ## 使用方式
 （注：文档正在编写，但是可以先参阅[用法文档](https://github.com/F18-Maverick/EasyTicket/blob/main/Doc/source/Usage.rst)）
-

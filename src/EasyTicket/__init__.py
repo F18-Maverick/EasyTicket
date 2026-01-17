@@ -6,7 +6,3 @@ if current_dir not in sys.path:
 import app
 def main():
     app.run_function()
-
-
-
-

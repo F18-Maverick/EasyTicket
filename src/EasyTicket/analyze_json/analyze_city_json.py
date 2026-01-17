@@ -13,7 +13,8 @@ class all_city:
         self.current_dir_this_file=""
         for j in self.dir_bar_list:
             self.current_dir_this_file+=j
-        self.city_json_path = os.path.join(self.current_dir_this_file, 'ticket_12306_prog_addition', 'city.json')
+        self.city_json_path = os.path.join(
+            self.current_dir_this_file, 'ticket_12306_prog_addition', 'city.json')
         self.city_data=None
         self.all_city=[]
         self.ad_code=[]
@@ -41,8 +42,3 @@ class all_city:
                 self.city_Code = city_info["cityCode"]
                 self.city_code.append(self.city_Code)
         return self.city_code
-
-
-
-
-

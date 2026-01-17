@@ -256,4 +256,3 @@ class AddUnknownBrowserDriverWindow:
             self.window.destroy()
         else:
             messagebox.showerror("错误", "保存信息失败")
-
