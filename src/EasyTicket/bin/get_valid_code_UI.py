@@ -17,9 +17,6 @@ class get_valid_code:
         self.x_entry = 50
         self.y_entry = 80 / 3
         self.windows_get_valid_code = tkinter.Toplevel()
-        # self.windows_get_valid_code = tkinter.Tk()
-        # self.windows_choose_start_time_icon = self.windows_choose_start_time.iconbitmap(
-        #     r"./ticket_12306_prog_addition/download_photo.ico")
         self.title_1 = self.windows_get_valid_code.title("填写登录信息")
         self.windows_get_valid_code_height = 300
         self.windows_get_valid_code_width = 500
@@ -50,13 +47,15 @@ class get_valid_code:
         self.count_total_run+=1
         def time_count_down():
             self.time_count_total=60
-            # if self.is_window_destory == False:
             while self.time_count_total!=0 and self.is_window_destory==False:
-                self.time_text=tkinter.Label(self.windows_get_valid_code, text="重新发送({}秒)".format(self.time_count_total))
-                self.time_text.place(x=self.x_entry, y=self.y_entry+60)
-                self.time_count_total-=1
-                time.sleep(1)
-                self.time_text.destroy()
+                try:
+                    self.time_text=tkinter.Label(self.windows_get_valid_code, text="重新发送({}秒)".format(self.time_count_total))
+                    self.time_text.place(x=self.x_entry, y=self.y_entry+60)
+                    self.time_count_total-=1
+                    time.sleep(1)
+                    self.time_text.destroy()
+                except:
+                    pass
             try:
                 self.button_resend_valid_code = tkinter.Button(
                     self.windows_get_valid_code, text="重新发送验证码", width=24, height=1,
@@ -73,7 +72,10 @@ class get_valid_code:
             with open(os.path.join(self.temp_dir, "data_socket_user_resend_valid_code_info.log"),
                       "w", encoding="utf-8") as datalog_write:
                 datalog_write.write(str(1))
-        time_count_down_thread()
+        try:
+            time_count_down_thread()
+        except:
+            pass
         if self.count_total_run!=1:
             self.button_resend_valid_code.destroy()
     def get_data(self):
@@ -95,9 +97,6 @@ class get_valid_code:
         self.button_sign_in_sure.pack(side=tkinter.BOTTOM)
         self.bind_func_sure = self.button_sign_in_sure.bind("<Button-1>", lambda event: self.get_data())
 
-# if __name__=="__main__":
-#     get_valid_code(2560, 1600, r"D:\project\python\pythonProject1\Web_Crawler\Analyze_Number\Numers_Analyze_Beta\Analyze_number_mainfile\ticket_12306", "15955152788")
-#     tkinter.mainloop()
 
 
 
