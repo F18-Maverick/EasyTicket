@@ -40,4 +40,8 @@ python ./run.py
 ```  
 
 ## 使用方式
-（注：文档正在编写，但是可以先参阅[用法文档](https://github.com/F18-Maverick/EasyTicket/blob/main/Doc/source/Usage.rst)）
+(注: 文档正在编写，但是可以先参阅[用法文档](https://github.com/F18-Maverick/EasyTicket/blob/main/Doc/source/Usage.rst))
+
+## 贡献
+欢迎对本项目做出任何贡献，详细请参阅[CONTRIBUTING.md](https://github.com/F18-Maverick/EasyTicket/blob/main/.github/CONTRIBUTING.md)  
+(注: 本项目开发者因时间或精力原因有时不能即使更新代码或及时回复您的issue以及PR, 但这绝非代表该项目不再维护! 该项目仍有大量值得开发和修改的地方!)
