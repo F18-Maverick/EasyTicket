@@ -1,6 +1,7 @@
-首先，感谢所有希望给票票通（EasyTicket）开源代码仓库做出贡献的每个人。希望各位都能顺利的买到回家的火车票！
+首先，感谢所有希望给票票通 (EasyTicket) 开源代码仓库做出贡献的每个人。希望各位都能顺利的买到回家的火车票！
 
 ## 在做出贡献之前：
+&emsp; -- 本分支或是本版本尚未拥有完整的功能，如果您想参与开发，我们也十分感谢!
 &emsp; -- 我们非常欢迎任何形式的贡献，包括但不限于提出[issues](https://github.com/F18-Maverick/EasyTicket/issues)、
 [Pull requests](https://github.com/F18-Maverick/EasyTicket/pulls)。  
 &emsp; -- issues中可以包括[readme](https://github.com/F18-Maverick/EasyTicket/blob/main/README.md)、
