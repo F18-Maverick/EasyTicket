@@ -1,6 +1,6 @@
 [project]
 name = "EasyTicket"
-version = "1.0.0"
+version = "1.1.0"
 authors = [
   { name="F18-Maverick", email="xu_ruihong2009@163.com" },
 ]
