@@ -8,6 +8,11 @@
 票票通（EasyTicket）是基于12306的快速抢票工具，
 用爬虫和selenium等自动化技术调用系统浏览器实现。
 
+票票通后端版 (EasyTicket-Backend-Edition) 是票票通的衍生版本，  
+在普通票票通的基础上添加后端以支持抢购未开首的车票以及对手机段的支持。  
+详情请看[EasyTicket-BackEnd-Edition](https://github.com/F18-Maverick/EasyTicket/tree/EasyTicket-BackEnd-Edition)分支中的内容。  
+(*注: 票票通后端版仍在开发过程中, 请耐心等待! 或者我们也欢迎您的[贡献](https://github.com/F18-Maverick/EasyTicket/tree/EasyTicket-BackEnd-Edition?tab=readme-ov-file#%E8%B4%A1%E7%8C%AE)!)
+
 ## 支持列表
 * 操作系统：Windows | Linux | MacOS | 其他(非官方支持) (推荐使用Windows和Linux)
 * 浏览器：MicroSoft Edge (系列) | Google Chrome (系列) | FireFox (系列) | 其他(具体请参阅[selenium官方文档](https://www.selenium.dev/documentation/webdriver/browsers/))   (推荐使用Firefox或edge)  
