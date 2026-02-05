@@ -1,60 +1,66 @@
 import os
 import ssl
 import json
-import tkinter
 import threading
 import http.cookiejar
 import urllib.request
-import tkinter.messagebox
 from .train_info_interface import train_ticket_choose_UI
 class get_ticket_station_info:
-    def __init__(self, main_window_height, main_window_width):
+    def __init__(self, ticket_start_station, ticket_end_station, ticket_start_date, thread_setup_num):
         self.dir_bar_list = []
         self.dir_bar = ""
-        self.current_dir_this_file = os.path.dirname(os.path.abspath(__file__))
-        for i in range(len(self.current_dir_this_file)):
-            self.dir_bar += self.current_dir_this_file[i]
-            if self.current_dir_this_file[i] == "/" or self.current_dir_this_file[i] == "\\":
-                self.dir_bar_list.append(self.dir_bar)
-                self.dir_bar = ""
-        self.current_dir_this_file = ""
-        for j in self.dir_bar_list:
-            self.current_dir_this_file += j
+        self.current_dir_this_file = os.path.dirname(
+            os.path.dirname(os.path.abspath(__file__)))
+        # for i in range(len(self.current_dir_this_file)):
+        #     self.dir_bar += self.current_dir_this_file[i]
+        #     if self.current_dir_this_file[i] == "/" or self.current_dir_this_file[i] == "\\":
+        #         self.dir_bar_list.append(self.dir_bar)
+        #         self.dir_bar = ""
+        # self.current_dir_this_file = ""
+        # for j in self.dir_bar_list:
+        #     self.current_dir_this_file += j
         self.ssl_context_dir=os.path.join(
             self.current_dir_this_file, "ticket_12306_prog_addition", "cacert.pem")
         self.temp_dir = os.path.join(self.current_dir_this_file, "temp")
-        self.main_window_height=main_window_height
-        self.main_window_width=main_window_width
         self.constant=ssl.create_default_context(cafile=self.ssl_context_dir)
         self.ticket_all_info_dict=[]
         self.station_start_symbol=None
         self.station_end_symbol=None
         self.station_name_dict={}
-        self.start_city=None
-        self.end_city=None
-        self.date_start=None
-        if os.path.exists(self.temp_dir):
-            self.temp_dir_start = os.path.join(
-                self.temp_dir, "data_socket_start_station.log")
-            self.temp_dir_end = os.path.join(
-                self.temp_dir, "data_socket_end_station.log")
-            self.temp_dir_date = os.path.join(
-                self.temp_dir, "data_socket_start_date.log")
-            with open(self.temp_dir_start, "r", encoding="utf-8") as read_start:
-                self.read_condition_start=read_start.read()
-            with open(self.temp_dir_end, "r", encoding="utf-8") as read_end:
-                self.read_condition_end=read_end.read()
-            with open(self.temp_dir_end, "r", encoding="utf-8") as read_date:
-                self.read_condition_date=read_date.read()
+        self.ticket_start_station=ticket_start_station
+        self.ticket_end_station=ticket_end_station
+        self.ticket_start_date=ticket_start_date
+        self.thread_setup_num=thread_setup_num
         self.condition=(
-                not os.path.exists(self.temp_dir) or self.read_condition_start==""
-                or self.read_condition_end=="" or self.read_condition_date=="")
+                not os.path.exists(self.temp_dir) or 
+                self.ticket_start_station==None or 
+                len(str(self.ticket_start_station).lstrip())==0 or
+                self.ticket_end_station==None or 
+                len(str(self.ticket_end_station).lstrip())==0 or
+                self.ticket_start_date==None or 
+                len(str(self.ticket_start_date).lstrip())==0)
+        print(self.temp_dir, self.ticket_start_station, self.ticket_end_station, self.ticket_start_date)
         if self.condition:
-            self.error_box=tkinter.messagebox.showerror(
-                title="未找到文件",
-                message="请填写购票信息(出发时间, 出发车站, 到达车站)")
+            print("Find ticket info error.")
+            self.delete_error_log_file()
         else:
             self.Download_get_station_info()
+    def delete_error_log_file(self):
+        try:
+            os.remove(
+                os.path.join(
+                    self.temp_dir, 
+                    "data_socket_start_station_info_{}.log".format(self.thread_setup_num)))
+            os.remove(
+                os.path.join(
+                    self.temp_dir, 
+                    "data_socket_end_station_info_{}.log".format(self.thread_setup_num)))
+            os.remove(
+                os.path.join(
+                    self.temp_dir, 
+                    "data_socket_start_date_info_{}.log".format(self.thread_setup_num)))
+        except:
+            print("File deal error, please reset the program.")
     def Download_get_station_info(self):
         self.header = {
             'Cache-Control': 'no-cache',
@@ -90,7 +96,8 @@ class get_ticket_station_info:
         for index in range(len(self.station_info_section_list_index)-1):
             self.station_info_section = ""
             for section_index in range(
-                    self.station_info_section_list_index[index], self.station_info_section_list_index[index+1]):
+                    self.station_info_section_list_index[index], 
+                    self.station_info_section_list_index[index+1]):
                 self.station_info_section+=self.station_name_info[section_index]
             self.station_info_section_list.append(self.station_info_section)
         for all_station in self.station_info_section_list:
@@ -119,36 +126,29 @@ class get_ticket_station_info:
             for all_station_symbol_index in range(len(self.count_4)-1):
                 self.station_symbol=""
                 for station_symbol_index in range(
-                    self.count_4[all_station_symbol_index]+1, self.count_4[all_station_symbol_index+1]):
+                    self.count_4[
+                        all_station_symbol_index]+1, self.count_4[all_station_symbol_index+1]):
                     self.station_symbol+=all_station[station_symbol_index]
             self.station_symbol_list.append(self.station_symbol)
         for all_station_info_index in range(len(self.station_name_list)):
             self.station_info_dict[
-                self.station_name_list[all_station_info_index]]=self.station_symbol_list[all_station_info_index]
+                self.station_name_list[
+                    all_station_info_index]]=self.station_symbol_list[all_station_info_index]
         if not os.path.exists(self.temp_dir):
             os.makedirs(self.temp_dir)
-        with open(os.path.join(self.temp_dir, "station_name_info.json"), "w", encoding="utf-8") as datalog_write:
+        with open(os.path.join(
+            self.temp_dir, "station_name_info.json"), "w", encoding="utf-8") as datalog_write:
             json.dump(self.station_info_dict, datalog_write, indent=4, ensure_ascii=False)
-        with open(self.temp_dir_start, "r", encoding="utf-8") as datalog_city_start_read:
-            self.start_city=datalog_city_start_read.read()
-        with open(self.temp_dir_end, "r", encoding="utf-8") as datalog_city_end_read:
-            self.end_city=datalog_city_end_read.read()
-        with open(self.temp_dir_date, "r", encoding="utf-8") as datalog_city_start_date_read:
-            self.date_start = datalog_city_start_date_read.read()
-        if self.start_city not in self.station_info_dict:
-            self.error_box = tkinter.messagebox.showerror(
-                title="未找到文件",
-                message="请填写正确的购票信息(出发时间, 出发车站, 到达车站)")
+        if self.ticket_start_station not in self.station_info_dict:
+            print("Ticket info error.")
         else:
-            self.station_start_symbol=self.station_info_dict[self.start_city].upper()
-        if self.end_city not in self.station_info_dict:
-            self.error_box = tkinter.messagebox.showerror(
-                title="未找到文件",
-                message="请填写正确的购票信息(出发时间, 出发车站, 到达车站)")
+            self.station_start_symbol=self.station_info_dict[self.ticket_start_station].upper()
+        if self.ticket_end_station not in self.station_info_dict:
+            print("Ticket info error.")
         else:
-            self.station_end_symbol=self.station_info_dict[self.end_city].upper()
+            self.station_end_symbol=self.station_info_dict[self.ticket_end_station].upper()
         self.train_info_url_compleat=self.train_info_url.format(
-            self.date_start, self.station_start_symbol, self.station_end_symbol, "ADULT")
+            self.ticket_start_date, self.station_start_symbol, self.station_end_symbol, "ADULT")
         self.add_url_headers_train_info = urllib.request.Request(
             url=self.train_info_url_compleat, headers=self.header)
         self.response_url_train = urllib.request.urlopen(
@@ -269,15 +269,24 @@ class get_ticket_station_info:
             self.reflex_table[all_info_index]=all_info_index
             self.train_info_dict = []
             self.every_train_info={}
-            self.train_info_dict.append(self.train_start_station_list[all_info_index])
-            self.train_info_dict.append(self.train_end_station_list[all_info_index])
-            self.train_info_dict.append(self.peo_want_start_station_list[all_info_index])
-            self.train_info_dict.append(self.peo_want_end_station_list[all_info_index])
-            self.train_info_dict.append(self.train_start_time_list[all_info_index])
-            self.train_info_dict.append(self.train_end_time_list[all_info_index])
-            self.train_info_dict.append(self.pass_time_list[all_info_index])
-            self.train_info_dict.append(self.ticket_can_get_Y_N[all_info_index])
-            self.every_train_info[self.train_code_list[all_info_index]]=self.train_info_dict
+            self.train_info_dict.append(
+                self.train_start_station_list[all_info_index])
+            self.train_info_dict.append(
+                self.train_end_station_list[all_info_index])
+            self.train_info_dict.append(
+                self.peo_want_start_station_list[all_info_index])
+            self.train_info_dict.append(
+                self.peo_want_end_station_list[all_info_index])
+            self.train_info_dict.append(
+                self.train_start_time_list[all_info_index])
+            self.train_info_dict.append(
+                self.train_end_time_list[all_info_index])
+            self.train_info_dict.append(
+                self.pass_time_list[all_info_index])
+            self.train_info_dict.append(
+                self.ticket_can_get_Y_N[all_info_index])
+            self.every_train_info[
+                self.train_code_list[all_info_index]]=self.train_info_dict
             self.ticket_all_info_dict.append(self.every_train_info)
         for count_index in range(len(self.ticket_can_get_Y_N)):
             if self.ticket_can_get_Y_N[count_index]=="该票未起售":
@@ -293,13 +302,19 @@ class get_ticket_station_info:
                         self.reflex_table_values_list[left_train_code_index])
                     del self.reflex_table_values_list[left_train_code_index+1]
         for index in range(len(self.reflex_table_values_list)):
-            self.reflex_table[self.reflex_table_keys_list[index]]=self.reflex_table_values_list[index]
+            self.reflex_table[
+                self.reflex_table_keys_list[index]]=self.reflex_table_values_list[index]
         print(self.reflex_table)
-        with open(os.path.join(self.temp_dir, "all_TrainStation_info.json"), "w", encoding="utf-8") as train_info_json:
-            train_info_json.write(json.dumps(self.ticket_all_info_dict, ensure_ascii=False))
+        with open(os.path.join(
+                self.temp_dir, "all_TrainStation_info.json"), "w", 
+            encoding="utf-8") as train_info_json:
+            train_info_json.write(
+                json.dumps(self.ticket_all_info_dict, ensure_ascii=False))
         self.ticket_choose_interface_thread=threading.Thread(
             target=train_ticket_choose_UI,
-            args=(self.ticket_all_info_dict, self.main_window_height, self.main_window_width,
-                  self.date_start, self.start_city, self.end_city, self.reflex_table),
-            name="thread5", daemon=True)
+            args=(self.ticket_all_info_dict, 600, 800, self.ticket_start_date, 
+                  self.ticket_start_station, self.ticket_end_station, 
+                  self.reflex_table),
+            name="thread5", 
+            daemon=True)
         self.ticket_choose_interface_thread.start()
