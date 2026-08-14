@@ -2,7 +2,7 @@
 name = "EasyTicket"
 version = "1.1.0"
 authors = [
-  { name="F18-Maverick", email="xu_ruihong2009@163.com" },
+  { name="F18-Maverick", email="rayxu2333@outlook.com" },
 ]
 description = "Get ticket on 12306 by web crawler and selenium driveing the system browser"
 dependencies=["selenium>=4.0.0"]
